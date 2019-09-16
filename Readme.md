@@ -38,6 +38,6 @@ func GetSigned (payload []byte, sbyte, sbit, bitlen int) int64
 
   This function call will take the following bold bits as values
 
-  0000__0000 00000000 0__0000000 
+  0000**0000 00000000 0**0000000 
 
 __Special case__: if the specified bit range goes beyond the []byte slice, you always get __ZERO__. If zero is a valid value for your application, you are on your own. 
