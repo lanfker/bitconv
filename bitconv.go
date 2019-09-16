@@ -38,7 +38,11 @@ func dataValid(payload []byte, sbyte, sbit, bitlen int) bool {
 	if sbit > bitlen && sbyte < len(payload) {
 		ok = true
 	}
-	if bitlen > sbit+1 && sbyte+1+(bitlen-sbit-1)/8 < len(payload) {
+	extra := 0
+	if (bitlen-sbit-1)%8 != 0 {
+		extra = 1
+	}
+	if bitlen > sbit+1 && sbyte+extra+(bitlen-sbit-1)/8 < len(payload) {
 		ok = true
 	}
 	return ok
