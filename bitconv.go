@@ -46,7 +46,7 @@ func dataValid(payload []byte, sbyte, sbit, bitlen int) bool {
 
 //GetUnsigned gets an unsigned integer from the bit pattern represented by the payload byte slice
 func GetUnsigned(payload []byte, sbyte, sbit, bitlen int) int64 {
-	if !dataValid {
+	if !dataValid(payload, sbyte, sbit, bitlen) {
 		return 0
 	}
 	var v int64
@@ -56,7 +56,7 @@ func GetUnsigned(payload []byte, sbyte, sbit, bitlen int) int64 {
 //GetSigned gets an signed integer from the bit pattern represented by the payload byte slice
 //When the underline integer is unsigned, it behaves the same as GetUnsigned
 func GetSigned(payload []byte, sbyte, sbit, bitlen int) int64 {
-	if !dataValid {
+	if !dataValid(payload, sbyte, sbit, bitlen) {
 		return 0
 	}
 
