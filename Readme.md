@@ -26,7 +26,7 @@ func GetSigned (payload []byte, sbyte, sbit, bitlen int) int64
 
 * __sbit__ within the start byte (index starting with 0, and this can only be [0,7] since a byte has only 8 bits)
 
-* __bitlen represents the number of bits the resulting integer should have. 
+* __bitlen__ represents the number of bits the resulting integer should have. 
 
   
 
