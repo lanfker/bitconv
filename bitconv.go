@@ -33,8 +33,22 @@ func getSignedInt(val, msb int64, sign GMSign) int64 {
 	return val
 }
 
+func dataValid(payload []byte, sbyte, sbit, bitlen int) bool {
+	ok := false
+	if sbit > bitlen && sbyte < len(payload) {
+		ok = true
+	}
+	if bitlen > sbit && sbyte+(bitlen-sbit-1)/8 < len(payload) {
+		ok = true
+	}
+	return ok
+}
+
 //GetUnsigned gets an unsigned integer from the bit pattern represented by the payload byte slice
 func GetUnsigned(payload []byte, sbyte, sbit, bitlen int) int64 {
+	if !dataValid {
+		return 0
+	}
 	var v int64
 	return extractBitRange(payload, v, sbyte, sbit, bitlen)
 }
@@ -42,6 +56,10 @@ func GetUnsigned(payload []byte, sbyte, sbit, bitlen int) int64 {
 //GetSigned gets an signed integer from the bit pattern represented by the payload byte slice
 //When the underline integer is unsigned, it behaves the same as GetUnsigned
 func GetSigned(payload []byte, sbyte, sbit, bitlen int) int64 {
+	if !dataValid {
+		return 0
+	}
+
 	var i byte = 1
 	for k := 0; k < sbit; k++ {
 		i <<= 1
